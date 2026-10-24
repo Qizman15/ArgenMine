@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ArgenMine — донат, форум, игры</title>
+<script>/* Настройки: AM_API='php/api.php' включает боевой режим (MySQL). Пусто = демо в браузере. */
+window.AM_API='';window.AM_TURNSTILE='';</script>
+<style>
+:root{--bg:#0a0b0f;--s1:#12141b;--s2:#1a1d27;--line:#262a37;--tx:#eceef4;--mut:#8e94a6;--gold:#e5b44c;--ice:#9fd6ff;--ok:#4fd68a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0)}
+@media(prefers-color-scheme:light){:root{--bg:#f2f3f7;--s1:#fff;--s2:#eceef4;--line:#d9dce6;--tx:#14161d;--mut:#5f6578;--gold:#a86f00;--ice:#1d6fb3;color-scheme:light}}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 400px at 80% -10%,#2a2410 0,transparent 60%),var(--bg);background-attachment:fixed;color:var(--tx);font:15px/1.55 system-ui,'Segoe UI',sans-serif}
+a{color:inherit}header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px 16px;padding:12px 20px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:21px;text-decoration:none;letter-spacing:1px}.logo b{color:var(--gold)}
+nav{display:flex;gap:2px;flex-wrap:wrap;flex:1}nav a{color:var(--mut);text-decoration:none;padding:6px 10px;border-radius:8px}nav a:hover,nav a.on{color:var(--tx);background:var(--s2)}
+.btn{background:linear-gradient(135deg,#f3cd72,var(--gold));color:#18130a;border:0;border-radius:10px;padding:9px 15px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.g{background:var(--s2);color:var(--tx);border:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+main{max-width:1060px;margin:auto;padding:24px 20px 90px}h1{font-size:clamp(26px,5vw,42px);margin:0 0 6px;line-height:1.1}h2{margin:28px 0 10px;font-size:19px}.mut{color:var(--mut)}
+.box{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:16px}
+.hero{padding:34px 28px;background:linear-gradient(120deg,#2b2209,var(--s1) 65%);border:1px solid var(--line);border-radius:18px;margin-bottom:16px}.hero h1 span{color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}.stats b{font-size:28px;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.row{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}.row:first-child{border-top:0}.row .t{flex:1;min-width:0}.row b{display:block}
+.av{width:42px;height:42px;border-radius:10px;background:var(--s2);display:grid;place-items:center;color:var(--gold);font-weight:800;flex:none}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tabs button{background:var(--s1);border:1px solid var(--line);color:var(--mut);border-radius:9px;padding:7px 13px;cursor:pointer;font:inherit}.tabs button.on{background:var(--gold);color:#18130a;border-color:var(--gold);font-weight:700}
+input,textarea{width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit}label{display:block;margin:10px 0 4px;color:var(--mut);font-size:13px}.form{max-width:400px}
+.chat{height:300px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}.msg{background:var(--s2);padding:8px 12px;border-radius:10px;max-width:80%}.msg small{color:var(--mut)}
+.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--s2);color:var(--mut)}.ach.on{border-color:var(--ok)}.ach.on .tag{color:var(--ok)}
+.pc{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;border:1px solid var(--line);cursor:pointer;padding:0;background:#000;color:#fff;text-align:left;transition:transform .15s,border-color .15s}
+.pc:hover{transform:translateY(-3px);border-color:var(--gold)}.pc img{width:100%;height:100%;object-fit:cover;display:block}
+.pc div{position:absolute;inset:auto 0 0;padding:34px 14px 12px;background:linear-gradient(transparent,#000d)}.pc small{color:#ccc;font-size:11px;text-transform:uppercase}.pc h3{margin:0;font-size:22px}.pc span{font-weight:700;color:var(--gold)}
+dialog{background:var(--s1);color:var(--tx);border:1px solid var(--line);border-radius:16px;padding:0;width:min(900px,94vw);max-height:92vh;overflow:auto}dialog::backdrop{background:#000b}
+.pm{display:grid;grid-template-columns:1fr 1fr}.pm .l{padding:24px}.pm img{width:100%;height:100%;object-fit:cover;min-height:260px}.pm ul{padding-left:18px;margin:6px 0}.pm li{margin:2px 0}
+.x{position:absolute;right:12px;top:8px;background:#000a;color:#fff;border:0;border-radius:99px;width:34px;height:34px;font-size:20px;cursor:pointer}
+@media(max-width:700px){.pm{grid-template-columns:1fr}.pm img{order:-1;height:240px}}
+#cartb{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0));z-index:8;border-radius:99px;padding:14px 18px}
+.cmd{background:var(--s2);border-radius:8px;padding:6px 10px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;margin:4px 0;word-break:break-all}
+#toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0));transform:translateX(-50%);background:var(--gold);color:#18130a;padding:10px 18px;border-radius:10px;font-weight:700;display:none;z-index:20;max-width:92vw}
+footer{border-top:1px solid var(--line);padding:22px 20px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;max-width:1060px;margin:auto}
+</style></head><body>
+<header><a class="logo" href="#/">ARGEN<b>MINE</b></a><nav id="nav"></nav><div id="auth"></div></header>
+<main id="app"></main><div id="toast"></div>
+<button class="btn" id="cartb">🛒 <span id="cc">0</span></button>
+<dialog id="dlg"></dialog>
+<footer><span><b>ARGENMINE</b> © 2026 Все права защищены</span><span>Форум · Правила · Поддержка · Discord</span></footer>
+<script>
+const PRODUCTS=__PRODUCTS__;
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let mem={};const L={get(k,d){try{const v=localStorage.getItem('am_'+k);return v?JSON.parse(v):(k in mem?mem[k]:d)}catch(e){return k in mem?mem[k]:d}},set(k,v){mem[k]=v;try{localStorage.setItem('am_'+k,JSON.stringify(v))}catch(e){}}};
+const toast=(t,ms=2600)=>{const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',ms)};
+const enc=s=>btoa(unescape(encodeURIComponent(s)));
+/* ---------- слой данных: боевой (PHP+MySQL) или демо (localStorage) ---------- */
+function demo(a,b,p){const E=m=>{throw new Error(m)},us=L.get('users',[]),me=L.get('me',null),tp=L.get('topics',[]);
+ switch(a){
+ case 'me':return{nick:me};
+ case 'register':if(!/^[A-Za-z0-9_]{3,16}$/.test(b.nick))E('Ник: 3–16 символов, латиница, цифры, _');if(!/^\S+@\S+\.\S+$/.test(b.email))E('Неверный e-mail');if(b.pass.length<6)E('Пароль короче 6 символов');
+  if(us.some(u=>u.n.toLowerCase()===b.nick.toLowerCase()||u.e===b.email.toLowerCase()))E('Ник или e-mail уже заняты');us.push({n:b.nick,e:b.email.toLowerCase(),p:enc(b.pass)});L.set('users',us);L.set('me',b.nick);return{nick:b.nick};
+ case 'login':{const u=us.find(x=>x.n===b.nick&&x.p===enc(b.pass));if(!u)E('Неверный ник или пароль');L.set('me',u.n);return{nick:u.n}}
+ case 'logout':L.set('me',null);return{};
+ case 'forgot':{const u=us.find(x=>x.e===b.email.trim().toLowerCase());if(!u)return{ok:1};const t=Math.random().toString(36).slice(2)+Date.now().toString(36);const r=L.get('resets',{});r[t]={n:u.n,exp:Date.now()+36e5};L.set('resets',r);return{ok:1,demo_link:'#/reset/'+t}}
+ case 'reset':{const r=L.get('resets',{}),x=r[b.token];if(!x||x.exp<Date.now())E('Ссылка недействительна или устарела');if(b.pass.length<6)E('Пароль короче 6 символов');us.find(u=>u.n===x.n).p=enc(b.pass);L.set('users',us);delete r[b.token];L.set('resets',r);return{ok:1}}
+ case 'users':return us.map(u=>({nick:u.n}));
+ case 'topics':return tp.filter(t=>t.s===p.s).reverse();
+ case 'topic_new':if(!me)E('Нужно войти');if(!b.title.trim())E('Введите название');tp.push({s:b.section,title:b.title,body:b.body,a:me});L.set('topics',tp);return{ok:1};
+ case 'chat':return L.get('chat',[]);
+ case 'chat_send':{if(!me)E('Нужно войти');const c=L.get('chat',[]);c.push({a:me,m:b.m});L.set('chat',c.slice(-100));return{ok:1}}
+ case 'friends':return L.get('fr:'+me,[]);
+ case 'friend_add':{if(!us.some(u=>u.n===b.nick)||b.nick===me)E('Игрок не найден');const f=L.get('fr:'+me,[]);if(!f.includes(b.nick))f.push(b.nick);L.set('fr:'+me,f);return{ok:1}}
+ case 'friend_del':L.set('fr:'+me,L.get('fr:'+me,[]).filter(x=>x!==b.nick));return{ok:1};
+ case 'search':{const q=(p.q||'').toLowerCase();return tp.filter(t=>(t.title+t.body+t.a).toLowerCase().includes(q)).map(t=>({t:t.title,b:t.body,a:t.a}))}
+ case 'order':if(!/^[A-Za-z0-9_]{3,16}$/.test(b.nick))E('Неверный ник');return{demo:1,sum:b.items.reduce((s,i)=>s+PRODUCTS.find(x=>x.id===i).price,0)};
+ }E('Неизвестное действие')}
+async function call(a,b,p={}){if(!window.AM_API)return demo(a,b,p);
+ if(b&&window.AM_TURNSTILE)b.cf=(document.querySelector('[name=cf-turnstile-response]')||{}).value||'';
+ const r=await fetch(window.AM_API+'?a='+a+'&'+new URLSearchParams(p),{method:b?'POST':'GET',credentials:'include',headers:{'Content-Type':'application/json'},body:b?JSON.stringify(b):undefined});
+ const j=await r.json();if(!r.ok)throw new Error(j.error||'Ошибка');return j}
+const tryc=async f=>{try{await f()}catch(e){toast(e.message)}};
+/* ---------- данные сайта ---------- */
+const SECT=[["Важная информация",[["news","Новости проекта","Официальные новости ArgenMine"],["upd","Обновления","Список изменений для сообщества"],["rules","Правила сервера","Актуальные правила проекта"]]],
+["Общение",[["chat","Общение игроков","Свободное общение"],["memes","Мемы","Мемы сообщества"],["art","Творчество","Арты, скриншоты, видео"]]],
+["Игровые режимы",[["grief","GRIEF","Грифер-режим"]]],
+["Жалобы",[["rep","Жалобы на игроков","Сообщить о нарушении"],["adm","Жалобы на администрацию","Обжалование действий персонала"]]]];
+const STAFF=[["Владелец", ["Qizman","chikafnaf._01256"]], ["⚡Cоздатель", ["FOGR"]]];
+const RULES=["Пользовательское соглашение","Правила режима Грифа","Правила Грифер-режима","Правила режима Анархия"];
+const ACH=[["Новичок","Зарегистрироваться",s=>!!s.me],["Первый шаг","Создать первую тему",s=>s.topics>0],["Болтун","Написать в чат",s=>s.chat>0],["Первый друг","Добавить друга",s=>s.fr>0],["Покупатель","Добавить донат в корзину",s=>L.get('cartEver',0)>0]];
+let ME=null,cart=L.get('cart',[]);
+const money=n=>n.toLocaleString('ru-RU')+' ₽';
+const needLogin=()=>`<div class="box">Чтобы пользоваться этим разделом, <a href="#/login" style="color:var(--gold)">войдите</a> или <a href="#/reg" style="color:var(--gold)">зарегистрируйтесь</a>.</div>`;
+const ts=()=>window.AM_TURNSTILE?`<div class="cf-turnstile" data-sitekey="${esc(window.AM_TURNSTILE)}" style="margin:10px 0"></div>`:'';
+const forumList=()=>SECT.map(([h,s])=>`<h2>${h}</h2><div class="box" style="padding:0">${s.map(([id,n,d])=>`<a class="row" style="text-decoration:none" href="#/sec/${id}"><div class="av">${n[0]}</div><div class="t"><b>${n}</b><span class="mut">${d}</span></div></a>`).join('')}</div>`).join('');
+const P={
+"":async()=>{const u=await call('users');return`<div class="hero"><p class="mut">Minecraft-сообщество</p><h1>ArgenMine <span>донат и форум</span></h1><p class="mut">Привилегии с автоматической выдачей, форум игроков, чат и мини-игры.</p><a class="btn" href="#/shop">Донат</a> <a class="btn g" href="#/forum">Форум</a></div><div class="stats"><div class="box"><b>${u.length}</b><span class="mut">пользователей</span></div><div class="box"><b>${PRODUCTS.length}</b><span class="mut">донатов</span></div><div class="box"><b>${SECT.reduce((a,s)=>a+s[1].length,0)}</b><span class="mut">разделов</span></div></div>${forumList()}`},
+forum:()=>`<h1>Форум ArgenMine</h1>${forumList()}`,
+sec:async id=>{const s=SECT.flatMap(x=>x[1]).find(x=>x[0]===id);if(!s)return'<p>Раздел не найден.</p>';const l=await call('topics',null,{s:id});
+ return`<h1>${s[1]}</h1><p class="mut">${s[2]}</p>${ME?`<div class="box"><label>Название темы</label><input id="tt" maxlength="80"><label>Текст</label><textarea id="tb" rows="3"></textarea><p><button class="btn" id="mk">Создать тему</button></p></div>`:needLogin()}<h2>Темы</h2><div class="box" style="padding:0">${l.map(t=>`<div class="row"><div class="av">${esc(t.a[0]).toUpperCase()}</div><div class="t"><b>${esc(t.title)}</b><span class="mut">${esc(t.body)}</span></div><span class="tag">${esc(t.a)}</span></div>`).join('')||'<div class="row mut">Тем пока нет. Создайте первую.</div>'}</div>`},
+users:async()=>{const u=await call('users');return`<h1>Пользователи</h1><div class="grid">${u.map(x=>`<div class="box row" style="border:0"><div class="av">${esc(x.nick[0]).toUpperCase()}</div><div class="t"><b>${esc(x.nick)}</b><span class="mut">Игрок</span></div></div>`).join('')||'<p class="mut">Пока нет пользователей.</p>'}</div>`},
+admin:()=>`<h1>Администрация проекта</h1>${STAFF.map(([r,l])=>`<h2>${r}</h2><div class="grid">${l.map(([n])=>`<div class="box row" style="border:0"><div class="av">${n[0]}</div><div class="t"><b>${n}</b><span class="mut">${r}</span></div></div>`).join('')}</div>`).join('')}`,
+rules:()=>`<h1>Правила сервера</h1><div class="box" style="padding:0">${RULES.map(r=>`<div class="row"><span class="tag">Важно</span><div class="t"><b>${r}</b></div></div>`).join('')}</div>`,
+shop:()=>`<h1>Донат</h1><p class="mut">Оплата в рублях. Привилегия выдаётся автоматически после оплаты.</p><div class="tabs"><button class="on">Обычные донаты</button></div><div class="grid">${PRODUCTS.map(p=>`<button class="pc" data-p="${p.id}"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"><div><small>${p.cat}</small><h3>${esc(p.name)}</h3><span>${money(p.price)}</span></div></button>`).join('')}</div>`,
+games:()=>`<h1>Игры</h1><p class="mut">Мини-игры для отдыха. Управление: стрелки или WASD.</p><div class="tabs" id="gt"><button data-k="snake">Змейка</button><button data-k="memory">Память</button><button data-k="clicker">Лис-кликер</button></div><div class="box" id="gm"></div>`,
+friends:async()=>{if(!ME)return needLogin();const f=await call('friends');return`<h1>Друзья</h1><div class="box"><label>Найти игрока (минимум 2 символа)</label><div style="display:flex;gap:8px"><input id="fq"><button class="btn" id="fb">Добавить</button></div></div><h2>Список друзей</h2><div class="box" style="padding:0">${f.map(n=>`<div class="row"><div class="av">${esc(n[0]).toUpperCase()}</div><div class="t"><b>${esc(n)}</b></div><button class="btn g" data-d="${esc(n)}">Удалить</button></div>`).join('')||'<div class="row mut">Друзей пока нет.</div>'}</div>`},
+ach:async()=>{if(!ME)return needLogin();const s={me:ME,topics:(await Promise.all(SECT.flatMap(x=>x[1]).map(x=>call('topics',null,{s:x[0]})))).flat().filter(t=>t.a===ME).length,chat:(await call('chat')).filter(m=>m.a===ME).length,fr:(await call('friends')).length};
+ const d=ACH.filter(a=>a[2](s)).length;return`<h1>Достижения</h1><p class="mut">Открыто ${d} из ${ACH.length}</p><div class="grid">${ACH.map(([n,t,f])=>{const o=f(s);return`<div class="box ach ${o?'on':''}"><b>${n}</b><p class="mut">${t}</p><span class="tag">${o?'Получено':'Закрыто'}</span></div>`}).join('')}</div>`},
+chat:async()=>`<h1>Общий чат</h1><div class="box"><div class="chat" id="cl">${(await call('chat')).map(m=>`<div class="msg"><small>${esc(m.a)}</small><br>${esc(m.m)}</div>`).join('')||'<span class="mut">Сообщений пока нет.</span>'}</div>${ME?`<div style="display:flex;gap:8px"><input id="cm" maxlength="200" placeholder="Сообщение"><button class="btn" id="cs">Отправить</button></div>`:needLogin()}</div>`,
+search:()=>`<h1>Поиск</h1><div class="box"><div style="display:flex;gap:8px"><input id="sq" placeholder="Название, текст или пользователь"><button class="btn" id="sb">Найти</button></div></div><div id="sr" style="margin-top:14px"></div>`,
+login:()=>`<div class="box form"><h1>С возвращением</h1><label>Ник</label><input id="ln" autocomplete="username"><label>Пароль</label><input id="lp" type="password" autocomplete="current-password">${ts()}<p><button class="btn" id="lb">Войти</button></p><p class="mut"><a href="#/forgot" style="color:var(--gold)">Забыли пароль?</a> · <a href="#/reg" style="color:var(--gold)">Регистрация</a></p></div>`,
+reg:()=>`<div class="box form"><h1>Регистрация</h1><label>Ник (3–16, латиница, цифры, _)</label><input id="rn" maxlength="16" autocomplete="username"><label>E-mail (для восстановления пароля)</label><input id="re" type="email" autocomplete="email"><label>Пароль (от 6 символов)</label><input id="rp" type="password" autocomplete="new-password">${ts()}<p><button class="btn" id="rb">Создать аккаунт</button></p>${window.AM_API?'':'<p class="mut">Демо-режим: данные хранятся только в вашем браузере.</p>'}</div>`,
+forgot:()=>`<div class="box form"><h1>Восстановление пароля</h1><p class="mut">Укажите e-mail аккаунта — мы отправим письмо со ссылкой для нового пароля.</p><label>E-mail</label><input id="fe" type="email">${ts()}<p><button class="btn" id="fb2">Отправить письмо</button></p></div>`,
+reset:t=>`<div class="box form"><h1>Новый пароль</h1><label>Новый пароль (от 6 символов)</label><input id="np" type="password" autocomplete="new-password"><p><button class="btn" id="nb" data-t="${esc(t)}">Сохранить</button></p></div>`};
+/* ---------- модалки: донат и корзина ---------- */
+const saveCart=()=>{L.set('cart',cart);$('#cc').textContent=cart.length};
+function openProduct(id){const p=PRODUCTS.find(x=>x.id===id);const d=$('#dlg');
+ d.innerHTML=`<button class="x" aria-label="Закрыть" onclick="dlg.close()">×</button><div class="pm"><div class="l"><span class="tag">${p.cat}</span><h1 style="margin:8px 0">${esc(p.name)}</h1><p style="font-size:22px;font-weight:800;margin:0 0 12px">${money(p.price)}</p><button class="btn" id="addc">${cart.includes(id)?'В корзине ✓':'Добавить в корзину'}</button><h2>Команды</h2><ul>${p.cmds.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><h2>Бонусы</h2><ul>${p.bonus.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><h2>Выдача</h2><div class="cmd">${esc(p.give)}</div><h2>Снятие</h2><div class="cmd">${esc(p.take)}</div></div><img src="${p.img}" alt="${esc(p.name)}"></div>`;
+ d.showModal();$('#addc').onclick=()=>{if(!cart.includes(id)){cart.push(id);L.set('cartEver',1);saveCart()}d.close();toast(p.name+' в корзине')}}
+function openCart(){const d=$('#dlg'),it=cart.map(i=>PRODUCTS.find(p=>p.id===i)),sum=it.reduce((s,p)=>s+p.price,0);
+ d.innerHTML=`<button class="x" aria-label="Закрыть" onclick="dlg.close()">×</button><div style="padding:24px"><h1>Корзина</h1>${it.map(p=>`<div class="row"><div class="t"><b>${esc(p.name)}</b></div><span>${money(p.price)}</span><button class="btn g" data-r="${p.id}">✕</button></div>`).join('')||'<p class="mut">Корзина пуста.</p>'}${it.length?`<p style="font-size:20px"><b>Итого: ${money(sum)}</b></p><label>Ваш ник на сервере</label><input id="onick" maxlength="16" value="${esc(ME||'')}"><p><button class="btn" id="pay">Оплатить</button></p>`:''}</div>`;
+ d.showModal();d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{cart=cart.filter(x=>x!==b.dataset.r);saveCart();openCart()});
+ const pay=$('#pay');pay&&(pay.onclick=()=>tryc(async()=>{const r=await call('order',{nick:$('#onick').value.trim(),items:cart});if(r.pay_url){location.href=r.pay_url}else{toast('Демо: заказ на '+money(r.sum)+' не оплачивается. Подключите PHP+MySQL (см. README).',5000)}}))}
+$('#cartb').onclick=openCart;
+/* ---------- игры ---------- */
+__GAMES__
+/* ---------- навигация ---------- */
+const NAV=[["","Главная"],["forum","Форум"],["users","Пользователи"],["admin","Администрация"],["rules","Правила"],["shop","Донат"],["games","Игры"],["friends","Друзья"],["ach","Достижения"],["chat","Чат"],["search","Поиск"]];
+function authBar(){$('#auth').innerHTML=ME?`<span class="mut">${esc(ME)}</span> <button class="btn g" id="lo">Выйти</button>`:`<a class="btn g" href="#/login">Войти</a> <a class="btn" href="#/reg">Регистрация</a>`;ME&&($('#lo').onclick=()=>tryc(async()=>{await call('logout',{});location.hash='#/';route()}))}
+function bind(r,arg){const g=id=>document.getElementById(id);
+ const go=async(f,to)=>{await f();location.hash=to||'#/';route()};
+ if(r==='sec'&&g('mk'))g('mk').onclick=()=>tryc(async()=>{await call('topic_new',{section:arg,title:g('tt').value,body:g('tb').value});route()});
+ if(r==='shop')document.querySelectorAll('.pc').forEach(b=>b.onclick=()=>openProduct(b.dataset.p));
+ if(r==='friends'){g('fb').onclick=()=>tryc(async()=>{const q=g('fq').value.trim();if(q.length<2)throw new Error('Минимум 2 символа');await call('friend_add',{nick:q});route()});document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>tryc(async()=>{await call('friend_del',{nick:b.dataset.d});route()}))}
+ if(r==='chat'){const c=g('cl');c.scrollTop=c.scrollHeight;g('cs')&&(g('cs').onclick=()=>tryc(async()=>{const m=g('cm').value.trim();if(!m)return;await call('chat_send',{m});route()}))}
+ if(r==='search')g('sb').onclick=()=>tryc(async()=>{const q=g('sq').value.trim(),res=q?await call('search',null,{q}):[];g('sr').innerHTML=q?`<div class="box" style="padding:0">${res.map(t=>`<div class="row"><div class="t"><b>${esc(t.t)}</b><span class="mut">${esc(t.b)}</span></div><span class="tag">${esc(t.a)}</span></div>`).join('')||'<div class="row mut">Ничего не найдено. Попробуйте другое слово.</div>'}</div>`:''});
+ if(r==='games')initGames();
+ if(r==='reg')g('rb').onclick=()=>tryc(()=>go(()=>call('register',{nick:g('rn').value.trim(),email:g('re').value.trim(),pass:g('rp').value})));
+ if(r==='login')g('lb').onclick=()=>tryc(()=>go(()=>call('login',{nick:g('ln').value.trim(),pass:g('lp').value})));
+ if(r==='forgot')g('fb2').onclick=()=>tryc(async()=>{const r=await call('forgot',{email:g('fe').value.trim()});
+  if(r.demo_link)g('fb2').parentElement.insertAdjacentHTML('afterend',`<div class="box">Демо-режим: письмо не отправляется. Ваша ссылка: <a style="color:var(--gold)" href="${r.demo_link}">сбросить пароль</a></div>`);
+  else toast('Если такой e-mail есть в базе, письмо со ссылкой уже отправлено.',5000)});
+ if(r==='reset')g('nb').onclick=()=>tryc(async()=>{await call('reset',{token:g('nb').dataset.t,pass:g('np').value});toast('Пароль изменён. Войдите с новым паролем.',4000);location.hash='#/login'})}
+async function route(){clearInterval(window.GI);window.onkeydown=null;const h=(location.hash||'#/').slice(2).split('/');let r=h[0];const arg=h[1]||'';if(!(r in P))r='';
+ try{ME=(await call('me')).nick}catch(e){ME=null}
+ $('#nav').innerHTML=NAV.map(([k,n])=>`<a href="#/${k}" class="${(r===k||(r==='sec'&&k==='forum'))?'on':''}">${n}</a>`).join('');authBar();saveCart();
+ try{$('#app').innerHTML=await P[r](arg)}catch(e){$('#app').innerHTML='<div class="box">Не удалось загрузить данные: '+esc(e.message)+'</div>'}
+ bind(r,arg);window.scrollTo(0,0)}
+if(window.AM_TURNSTILE){const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=true;document.head.append(s)}
+addEventListener('hashchange',route);route();
+</script></body></html>

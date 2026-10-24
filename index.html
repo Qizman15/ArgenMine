@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="enot" content="5b1b9f1a" />
+<title>ArgenMine — автодонат-магазин</title>
+<style>
+:root{--bg:#07090f;--card:#0e121b;--card2:#151a26;--line:#222a3a;--tx:#eef1f7;--mut:#8a93a8;--a:#35e0c2;--b:#8b7bff;--g:linear-gradient(135deg,#35e0c2,#8b7bff);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0)}
+@media(prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f2f4f9;--card:#fff;--card2:#eef0f6;--line:#d9deea;--tx:#141824;--mut:#5d667b;--a:#0fa88e;--b:#6a58e8;color-scheme:light}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}h1{font-size:clamp(26px,5vw,42px);margin:0 0 6px;line-height:1.1}h2{margin:30px 0 12px;font-size:20px}h3{margin:0}.mut{color:var(--mut)}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px 14px;padding:10px 20px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:20px;text-decoration:none;letter-spacing:.5px}.logo b{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:2px;flex-wrap:wrap;flex:1}nav a{color:var(--mut);text-decoration:none;padding:6px 10px;border-radius:9px;font-size:14px}nav a:hover,nav a.on{color:var(--tx);background:var(--card2)}
+.btn{background:var(--g);color:#06110f;border:0;border-radius:11px;padding:9px 16px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}.btn:hover{filter:brightness(1.1)}
+.btn.g{background:var(--card2);color:var(--tx);border:1px solid var(--line)}
+:is(button,input,select,textarea,a):focus-visible{outline:2px solid var(--a);outline-offset:2px}
+main{max-width:1080px;margin:auto;padding:26px 20px 70px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.hero{padding:34px 28px;border-radius:20px;border:1px solid var(--line);margin-bottom:16px;background:radial-gradient(600px 220px at 85% 0,#8b7bff33,transparent),radial-gradient(500px 220px at 0 100%,#35e0c222,transparent),var(--card)}
+.hero h1 span{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}.stats b{font-size:28px;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.row{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}.row:first-child{border-top:0}.t{flex:1;min-width:0}.t b{display:block}
+.av{width:42px;height:42px;border-radius:12px;background:var(--card2);display:grid;place-items:center;color:var(--a);font-weight:800;flex:none}
+.tag{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--card2);color:var(--mut);white-space:nowrap}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tabs button{background:var(--card);border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:7px 14px;cursor:pointer;font:inherit}.tabs button.on{background:var(--g);color:#06110f;border-color:transparent;font-weight:700}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit}
+label{display:block;margin:10px 0 4px;color:var(--mut);font-size:13px}.form{max-width:400px}
+.chat{height:300px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}.msg{background:var(--card2);padding:8px 12px;border-radius:12px;max-width:80%}.msg small{color:var(--mut)}
+.pc{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;border:1px solid var(--line);cursor:pointer;padding:0;background:#000;text-align:left;color:#fff;transition:transform .2s,border-color .2s}
+.pc:hover{transform:translateY(-4px);border-color:var(--a)}.pc img{width:100%;height:100%;object-fit:cover;display:block}
+.pc .in{position:absolute;inset:auto 0 0;padding:34px 14px 12px;background:linear-gradient(transparent,#000d)}.pc .in b{font-size:22px;display:block}
+.pr{display:inline-block;background:var(--g);color:#06110f;font-weight:800;border-radius:99px;padding:2px 11px;font-size:14px}
+dialog{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:18px;padding:0;width:min(860px,94vw);max-height:90vh;overflow:auto}dialog::backdrop{background:#000b}
+.pm{display:grid;grid-template-columns:1fr 1fr}.pm img{width:100%;height:100%;object-fit:cover;min-height:260px}.pm .tx{padding:22px}
+@media(max-width:640px){.pm{grid-template-columns:1fr}.pm img{order:-1;max-height:300px}}
+ul.l{padding-left:18px;margin:6px 0}ul.l li{margin:2px 0}.x{float:right}
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0));width:56px;height:56px;border-radius:50%;border:0;background:var(--g);color:#06110f;font-size:22px;cursor:pointer;box-shadow:0 6px 24px #0008;z-index:6}
+#fab i{position:absolute;top:-4px;right:-4px;background:#ff4d6d;color:#fff;font:700 12px/20px system-ui;min-width:20px;border-radius:10px;text-align:center;font-style:normal}
+.rec{display:flex;gap:10px;flex-wrap:wrap}.rec div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;gap:8px;align-items:center}.rec small{color:var(--mut)}
+.ach.on{border-color:var(--a)}.ach.on .tag{color:var(--a)}.cf{margin:10px 0}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0));transform:translateX(-50%);background:var(--g);color:#06110f;padding:10px 18px;border-radius:12px;font-weight:700;display:none;z-index:9;max-width:92vw}
+footer{border-top:1px solid var(--line);padding:22px 20px calc(22px + env(safe-area-inset-bottom,0));color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;max-width:1080px;margin:auto}
+.tkw{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tkt{display:flex;width:max-content;animation:tk 34s linear infinite}.tkw:hover .tkt{animation-play-state:paused}@keyframes tk{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.tkt{animation:none}.tkw{overflow:auto}}
+.tk{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px 18px;min-width:250px;margin-right:12px}.tk img{width:46px;height:46px;border-radius:12px;object-fit:cover}.tk b{display:block;font-size:19px}.tk small{color:var(--mut)}
+.srv{max-width:420px;margin:auto}.pay{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.pay button{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:14px;padding:12px;text-align:left;cursor:pointer;font:inherit;display:flex;gap:10px;align-items:center}.pay button.on{border-color:var(--a);box-shadow:0 0 0 1px var(--a) inset}.pay small{display:block;color:var(--mut);font-size:12px}
+.ck{display:flex!important;gap:8px;align-items:center;color:var(--tx)!important;font-size:14px!important}.ck input{width:auto}
+@media(max-width:560px){.pay{grid-template-columns:1fr}}
+header nav{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:4px 8px;align-items:center}
+.logo{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:10px 18px}
+.op{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:6px 14px;font-size:14px;line-height:1.2}.op b{color:#2ee66b}.dot{width:18px;height:18px;border-radius:50%;background:#2ee66b;box-shadow:0 0 0 4px #2ee66b33;flex:none}
+.more{position:relative}.more summary{list-style:none;cursor:pointer;color:var(--mut);padding:6px 10px;border-radius:9px;font-size:14px}.more summary::-webkit-details-marker{display:none}.more[open] summary{color:var(--tx);background:var(--card2)}
+.more .dd{position:absolute;top:115%;right:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;display:flex;flex-direction:column;min-width:190px;z-index:8;box-shadow:0 10px 30px #0006}
+.banner{min-height:300px;border-radius:26px;border:1px solid var(--line);margin-bottom:28px;padding:34px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;color:#fff;background:radial-gradient(700px 320px at 82% 15%,#8b7bff66,transparent),radial-gradient(600px 300px at 8% 95%,#35e0c255,transparent),linear-gradient(#ffffff0b 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,#ffffff0b 1px,transparent 1px) 0 0/34px 34px,linear-gradient(135deg,#10142a,#080b16)}
+.banner h1{font-size:clamp(46px,10vw,104px);font-weight:900;line-height:1;margin:0;letter-spacing:-1px}.banner h1 span{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}.banner p{margin:0;color:#c3cadb}
+.play{background:var(--g);color:#06110f;border:0;border-radius:20px;padding:12px 24px;cursor:pointer;font:inherit;text-align:left;width:max-content;margin-top:6px}.play small{display:block;font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:20px}.two h2{margin:0 0 4px;font-size:26px}.two p{margin:0 0 12px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+.seg{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px;flex-wrap:wrap}.seg button{flex:1;background:none;border:0;color:var(--tx);font:inherit;font-weight:700;padding:11px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}.seg button.on{background:var(--g);color:#06110f}
+.pc2{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:6px;transition:border-color .2s,transform .2s}.pc2:hover{border-color:var(--a);transform:translateY(-3px)}
+.pc2 .pi{padding:0;border:0;background:none;cursor:pointer;border-radius:14px;overflow:hidden;aspect-ratio:1}.pc2 img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.pc2 .pi:hover img{transform:scale(1.05)}
+.pc2 .pb{position:absolute;top:20px;right:20px;background:var(--g);color:#06110f;font-weight:800;border-radius:99px;padding:2px 11px;font-size:14px;z-index:1}.pc2 b{font-size:18px}
+</style></head><body>
+<header><a class="logo" href="#/">ARGEN<b>MINE</b></a><nav id="nav"></nav><div class="op" id="hop"></div><div id="auth"></div></header>
+<main id="app"></main>
+<button id="fab" aria-label="Корзина">🛒<i id="fn">0</i></button>
+<dialog id="pd"></dialog><dialog id="cd"></dialog><div id="toast"></div>
+<footer><span><b>ARGENMINE</b> · © 2026 Все права защищены</span><span><a href="#/offer">Публичная оферта</a> · <a href="#/rules">Правила</a></span></footer>
+<script>
+const CFG={BACKEND:false,API:'php/api.php',IMG:'images/',TURNSTILE:'',IP:'f1.play2go.cloud:21563',SERVER:'Гриферский',MAX:2026};
+const IMGS=/*IMGS*/{};
+const img=k=>IMGS[k]||CFG.IMG+k+'.jpg';
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let mem={};const L={get(k,d){try{const v=localStorage.getItem('am_'+k);return v?JSON.parse(v):(k in mem?mem[k]:d)}catch(e){return k in mem?mem[k]:d}},set(k,v){mem[k]=v;try{localStorage.setItem('am_'+k,JSON.stringify(v))}catch(e){}}};
+const toast=t=>{const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2800)};
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+async function api(a,body,qs=''){const r=await fetch(CFG.API+'?a='+a+qs,{method:body?'POST':'GET',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:body?JSON.stringify({...body,cf:document.querySelector('[name=cf-turnstile-response]')?.value||''}):undefined});
+ const j=await r.json().catch(()=>({error:'Ошибка сервера'}));if(!r.ok)throw new Error(j.error||'Ошибка');return j}
+const ts=()=>{if(!CFG.TURNSTILE)return'';if(!window.turnstile&&!document.getElementById('tsjs')){const s=document.createElement('script');s.id='tsjs';s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=true;document.head.append(s)}return`<div class="cf cf-turnstile" data-sitekey="${CFG.TURNSTILE}"></div>`};
+/* ===== Донаты (картинки, команды, цены, выдача LuckPerms) ===== */
+const SK=['Ежедневный бонус — /salary','Личный набор — /kits'],WP=['Установить варп — /setwarp','Удалить свой варп — /delwarp'];
+const B=(pref,h,r,m,w)=>[pref,...(w?['Варпов: '+w]:[]),'Точек дома: '+h,'Регионов для привата: '+r,'Предметов на рынке: '+m];
+const GG='Выдать донат другому игроку — /grand give ник донат';
+const PR=[
+{id:'griefer',g:'griefer',n:'GRIEFER',p:19,c:['Посмотреть текущее время — /time','Открыть ручной верстак — /workbench',...SK],b:B('Ваш префикс — %player_name%',2,2,2)},
+{id:'ghast',g:'ghast',n:'GHAST',p:698,c:['Покушать — /feed','Получить голову игрока — /skull ник','Игнорировать игрока — /ignore ник','Открыть ручной эндер-сундук — /ec',...SK],b:B('Уникальный префикс %player_name%',3,3,5)},
+{id:'kraken',g:'kraken',n:'KRAKEN',p:629,c:['Установить личное время — /ptime','Надеть предмет на голову — /hat','Посмотреть баланс другого игрока — /balance ник','Узнать информацию о предмете — /itemdb',...SK],b:B('Уникальный префикс KRAKEN %player_name%',5,5,8)},
+{id:'wither',g:'wither',n:'WITHER',p:649,c:['Посмотреть чужой инвентарь — /invsee ник','Посмотреть игроков поблизости — /near','Включить режим шпиона — /socialspy','Запустить фейерверк — /firework','Установить ясную погоду — /sun',...SK],b:B('Уникальный префикс %player_name%',7,7,10)},
+{id:'dragon',g:'dragon',n:'DRAGON',p:779,c:['Посмотреть чужой инвентарь с бронёй — /invsee ник armour','Узнать реальный ник — /realname ник','Установить день — /day','Установить ночь — /night','Установить ясную погоду — /sun','Писать объявления — /bc текст',...WP,...SK],b:B('Уникальный префикс %player_name%',10,10,15,2)},
+{id:'stinger',g:'stinger',n:'STINGER',p:1024,c:[GG,'GRIEFER (2 шт.), GHAST (1 шт.), KRAKEN (1 шт.)','Телепортироваться около игроков — /rtp near','Установить фейковый ник — /nick ник','Починить вещь — /repair','Запретить телепортацию к себе — /tptoggle','Накормить игрока — /feed ник',...WP,...SK],b:B('Уникальный префикс %player_name%',15,15,25,3)},
+{id:'eternity',g:'eternity',n:'ETERNITY',p:1788,c:[GG,'KRAKEN (2 шт.), WITHER (1 шт.), DRAGON (1 шт.)','Починить вещь с зачарованием — /repair','Починить все вещи в инвентаре — /repair all','Отключить входящие сообщения — /msgtoggle','Исцелиться — /heal','Поджечь игрока — /burn ник',...WP,...SK],b:B('Уникальный префикс %player_name%',20,20,25,5)},
+{id:'demon',g:'demon',n:'DEMON',p:2430,c:[GG,'WITHER (2 шт.), DRAGON (1 шт.), STINGER (1 шт.)','Режим полёта — /fly','Режим бога — /god','Починить все вещи с зачарованиями — /repair all','Исцелить игрока — /heal ник','Кикнуть игрока — /kick ник',...WP,...SK],b:B('Уникальный префикс %player_name%',50,50,40,10)},
+{id:'dadmin',g:'d_admin',n:'D. ADMIN',p:5349,c:[GG,'WITHER (3 шт.), DRAGON (2 шт.), STINGER (1 шт.), ETERNITY (1 шт.)','Режим невидимки в любом мире — /vanish','Телепортировать игрока на спавн — /spawn ник','Кикнуть игрока — /kick ник',...WP,...SK],b:B('Уникальный префикс %player_name%',250,260,250,215)}];
+PR.forEach(p=>{p.give='lp user %username% parent add '+p.g;p.take='lp user %username% parent remove '+p.g});
+const CUR={RUB:[1,'₽','Российский рубль'],UAH:[.45,'₴','Украинская гривна'],BYN:[.036,'Br','Белорусский рубль'],KZT:[5.5,'₸','Казахстанский тенге'],GEL:[.031,'₾','Грузинский лари'],USD:[.011,'$','Доллар США'],EUR:[.0101,'€','Евро']};
+const fmt=p=>{const[r,s]=CUR[L.get('cur','RUB')],v=p*r;return(v>=100?Math.round(v):+v.toFixed(2)).toLocaleString('ru-RU')+' '+s};
+let cart=L.get('cart',[]);const saveCart=()=>{L.set('cart',cart);$('#fn').textContent=cart.length};
+const mask=n=>n.length>6?n.slice(0,6)+'***'+n.slice(-3):n.slice(0,2)+'***';
+const DEMO_REC=[];
+const recH=l=>{const it=l.map(r=>{const p=PR.find(x=>x.n===r[1]);return`<div class="tk">${p?`<img src="${img(p.id)}" alt="">`:''}<span><small>[ ${esc(r[1])} 1 шт. ]</small><b>${esc(mask(r[0]))}</b></span></div>`}).join('');return it?`<div class="tkw"><div class="tkt">${it}${it}</div></div>`:'<p class="mut" style="text-align:center">Покупок пока нет.</p>'};
+const recBlock=()=>`<h2 style="text-align:center">Последние покупки</h2><p class="mut" style="text-align:center">Недавние покупки, которые произвели игроки сервера</p><div id="rec">${recH(ord().filter(x=>['paid','delivered'].includes(x.status)).slice(0,10).map(x=>[x.nick,x.product]))}</div>`;
+async function loadRec(){if(!CFG.BACKEND||!$('#rec'))return;try{const r=await api('recent');$('#rec').innerHTML=recH(r.map(x=>[x.nick,x.name]))}catch(e){}}
+const srvBlock=()=>`<h2 style="text-align:center">Наши серверы</h2><p class="mut" style="text-align:center">Мониторинг серверов проекта</p><div class="box srv"><small class="mut">${CFG.SERVER}</small><div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:22px">Сейчас играют</b><b id="so" style="color:var(--a);font-size:24px">…</b></div><button class="btn" id="sip" style="width:100%;margin:10px 0">${CFG.IP}</button><p class="mut" id="sm" style="text-align:center;margin:0"></p></div>`;
+async function loadSrv(){let o=0;if(CFG.BACKEND)try{o=(await api('online')).online}catch(e){}
+ const h=$('#hop');if(h)h.innerHTML=`<span class="dot"></span><span><small>Сейчас играют:</small><br><b>${o} из ${CFG.MAX}</b></span>`;
+ const e=$('#so');if(!e)return;e.textContent=o+' 👥';$('#sm').textContent=o+' из '+CFG.MAX;$('#sip').onclick=()=>{navigator.clipboard?.writeText(CFG.IP);toast('IP скопирован')}}
+
+/* ===== Форум и прочее ===== */
+const SECT=[["Важная информация",[["news","Новости проекта","Официальные новости"],["upd","Обновления","Список изменений"],["rules","Правила сервера","Актуальные правила"]]],["Общение",[["chat","Общение игроков","Свободное общение"],["memes","Мемы","Мемы сообщества"],["art","Творчество","Арты, скриншоты, видео"]]],["Игровые режимы",[["grief","Гриф","Грифер-режим"]]],["Жалобы",[["rep","Жалобы на игроков","Нарушения"],["adm","Жалобы на администрацию","Действия администрации"]]]];
+const STAFF=[["Владелец", ["Qizman","chikafnaf._01256"]], ["⚡Cоздатель", ["FOGR"]]];
+const RULES=["Пользовательское соглашение","Правила режима Грифера","Правила Грифер-режима","Правила режима Анархия"];
+const OFFER=["Предмет оферты. Магазин ArgenMine (далее — Продавец) предоставляет игроку (далее — Покупатель) цифровые товары: привилегии и услуги, действующие только на игровых серверах проекта.","Товар не является материальным. Он зачисляется на указанный Покупателем игровой ник автоматически после подтверждения оплаты.","Покупатель отвечает за правильность ника. Ошибочно введённый ник не является основанием для возврата.","Оплата производится через платёжные системы, подключённые к магазину. Цены указаны в рублях; в других валютах показаны ориентировочно.","Возврат средств возможен до выдачи товара. После выдачи цифрового товара возврат не производится, кроме случаев технической ошибки по вине Продавца.","Нарушение правил сервера может привести к блокировке аккаунта. Блокировка за нарушение правил не является основанием для возврата.","Продавец не несёт ответственности за перебои работы сервера по независящим от него причинам.","Реквизиты Продавца: <впишите ФИО/название, ИНН или регистрационные данные, e-mail для связи>."];
+const ACH=[["Новичок","Зарегистрироваться",u=>!!u],["Первый шаг","Создать первую тему",u=>L.get('topics',[]).some(t=>t.a===u)],["Болтун","Написать в чат",u=>L.get('chat',[]).some(m=>m.a===u)],["Первый друг","Добавить друга",u=>L.get('fr:'+u,[]).length>0],["Шопоголик","Добавить товар в корзину",u=>L.get('bought:'+u,0)>0]];
+const me=()=>L.get('me',null),users=()=>L.get('users',[]).map(u=>u.n),topics=()=>L.get('topics',[]);
+const needLogin=()=>`<div class="box">Чтобы пользоваться этим разделом, <a href="#/login" style="color:var(--a)">войдите</a> или <a href="#/reg" style="color:var(--a)">зарегистрируйтесь</a>.</div>`;
+const forumList=()=>SECT.map(([h,s])=>`<h2>${h}</h2><div class="box" style="padding:0">${s.map(([id,n,d])=>`<a class="row" style="text-decoration:none" href="#/sec/${id}"><div class="av">${n[0]}</div><div class="t"><b>${n}</b><span class="mut">${d}</span></div><span class="tag">${topics().filter(t=>t.s===id).length} тем</span></a>`).join('')}</div>`).join('');
+let SV='surv',CT='priv';
+const SERVERS=[['grief','Гриферский']],CATS=[['priv','Привилегии','🛡️'],['cases','Кейсы','🎁'],['other','Прочее','📦']];
+PR.forEach(p=>{p.sv='surv';p.ct='priv'});
+const shopGrid=()=>{const l=PR.filter(p=>!p.off&&p.sv===SV&&p.ct===CT);return l.length?`<div class="grid">${l.map(p=>`<div class="pc2"><span class="pb">${fmt(p.p)}</span><button class="pi" data-p="${p.id}" aria-label="${p.n}"><img src="${img(p.id)}" alt="${p.n}" loading="lazy"></button><small class="mut">Привилегия</small><b>${p.n}</b><button class="btn" data-p="${p.id}">Приобрести</button></div>`).join('')}</div>`:'<div class="box mut" style="text-align:center">В этой категории пока нет товаров.</div>'};
+const homePage=()=>`<section class="banner"><p>Minecraft-сервер</p><h1>Argen<span>Mine</span></h1><p>Привилегии, кейсы и услуги. Выдача мгновенно после оплаты.</p><button class="play" id="ip"><b>▶ Начать игру</b><small>${CFG.IP}</small></button></section>
+<div class="two"><div><h2>✳ Доступные серверы</h2><p class="mut">Выберите сервер, для которого хотите купить товары</p><div class="seg" id="sv">${SERVERS.map(([k,n])=>`<button data-k="${k}" class="${SV===k?'on':''}">${n}</button>`).join('')}</div></div>
+<div><h2>Категории товаров</h2><p class="mut">Выберите категорию — выдача мгновенно после оплаты</p><div class="seg" id="ct">${CATS.map(([k,n,i])=>`<button data-k="${k}" class="${CT===k?'on':''}">${i} ${n}</button>`).join('')}</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:10px"><select id="cur" style="width:auto" aria-label="Валюта">${Object.entries(CUR).map(([k,v])=>`<option value="${k}" ${L.get('cur','RUB')===k?'selected':''}>${k} — ${v[2]}</option>`).join('')}</select></div>
+<div id="sg">${shopGrid()}</div>${recBlock()}${srvBlock()}`;
+const P={
+"":()=>homePage(),
+shop:()=>homePage(),
+forum:()=>`<h1>Форум ArgenMine</h1>${forumList()}`,
+sec:id=>{const s=SECT.flatMap(x=>x[1]).find(x=>x[0]===id);if(!s)return'<p>Раздел не найден.</p>';const l=topics().filter(t=>t.s===id).reverse();
+ return`<h1>${s[1]}</h1><p class="mut">${s[2]}</p>${me()?`<div class="box"><label>Название темы</label><input id="tt" maxlength="80"><label>Текст</label><textarea id="tb" rows="3"></textarea><p><button class="btn" id="mk">Создать тему</button></p></div>`:needLogin()}<h2>Темы</h2><div class="box" style="padding:0">${l.map(t=>`<div class="row"><div class="av">${esc(t.a[0]).toUpperCase()}</div><div class="t"><b>${esc(t.t)}</b><span class="mut">${esc(t.b)}</span></div><span class="tag">${esc(t.a)}</span></div>`).join('')||'<div class="row mut">Тем пока нет. Создайте первую.</div>'}</div>`},
+users:()=>`<h1>Пользователи</h1><div class="grid">${users().map(n=>`<div class="box row" style="border:0"><div class="av">${esc(n[0]).toUpperCase()}</div><div class="t"><b>${esc(n)}</b><span class="mut">Игрок · тем: ${topics().filter(t=>t.a===n).length}</span></div></div>`).join('')||'<p class="mut">Пока нет пользователей.</p>'}</div>`,
+admin:()=>`<h1>Команда проекта</h1>${STAFF.map(([r,l])=>`<h2>${r}</h2><div class="grid">${l.map(n=>`<div class="box row" style="border:0"><div class="av">${n[0]}</div><div class="t"><b>${n}</b><span class="mut">${r}</span></div></div>`).join('')}</div>`).join('')}`,
+rules:()=>`<h1>Правила сервера</h1><div class="box" style="padding:0">${RULES.map(r=>`<div class="row"><span class="tag">Важно</span><div class="t"><b>${r}</b></div></div>`).join('')}</div><p><a href="#/offer" style="color:var(--a)">Публичная оферта магазина</a></p>`,
+offer:()=>`<h1>Публичная оферта</h1><p class="mut">Шаблон. Перед запуском приёма платежей проверьте текст с юристом и впишите свои реквизиты.</p><div class="box"><ol>${OFFER.map(o=>`<li style="margin:8px 0">${esc(o)}</li>`).join('')}</ol></div>`,
+games:()=>`<h1>Игры</h1><p class="mut">Мини-игры. Управление: стрелки или WASD.</p><div class="tabs" id="gt"><button data-k="snake">Змейка</button><button data-k="memory">Память</button><button data-k="clicker">Кликер</button></div><div class="box" id="gm"></div>`,
+friends:()=>{const u=me();if(!u)return needLogin();const f=L.get('fr:'+u,[]);return`<h1>Друзья</h1><div class="box"><label>Найти игрока (минимум 2 символа)</label><div style="display:flex;gap:8px"><input id="fq"><button class="btn" id="fb">Добавить</button></div></div><h2>Список друзей</h2><div class="box" style="padding:0">${f.map(n=>`<div class="row"><div class="av">${esc(n[0]).toUpperCase()}</div><div class="t"><b>${esc(n)}</b></div><button class="btn g" data-d="${esc(n)}">Удалить</button></div>`).join('')||'<div class="row mut">Друзей пока нет.</div>'}</div>`},
+ach:()=>{const u=me();if(!u)return needLogin();const d=ACH.filter(a=>a[2](u)).length;return`<h1>Достижения</h1><p class="mut">Открыто ${d} из ${ACH.length}</p><div class="grid">${ACH.map(([n,t,f])=>{const o=f(u);return`<div class="box ach ${o?'on':''}"><b>${n}</b><p class="mut">${t}</p><span class="tag">${o?'Получено':'Закрыто'}</span></div>`}).join('')}</div>`},
+chat:()=>`<h1>Общий чат</h1><div class="box"><div class="chat" id="cl">${L.get('chat',[]).map(m=>`<div class="msg"><small>${esc(m.a)}</small><br>${esc(m.m)}</div>`).join('')||'<span class="mut">Сообщений пока нет.</span>'}</div>${me()?`<div style="display:flex;gap:8px"><input id="cm" maxlength="200" placeholder="Сообщение"><button class="btn" id="cs">Отправить</button></div>`:needLogin()}</div>`,
+search:()=>`<h1>Поиск</h1><div class="box"><div style="display:flex;gap:8px"><input id="sq" placeholder="Название, текст или пользователь"><button class="btn" id="sb">Найти</button></div></div><div id="sr" style="margin-top:14px"></div>`,
+login:()=>`<div class="box form"><h1>С возвращением</h1><label>Ник или e-mail</label><input id="ln" autocomplete="username"><label>Пароль</label><input id="lp" type="password" autocomplete="current-password">${ts()}<p><button class="btn" id="lb">Войти</button></p><p class="mut"><a href="#/forgot" style="color:var(--a)">Забыли пароль?</a> · <a href="#/reg" style="color:var(--a)">Регистрация</a></p></div>`,
+reg:()=>`<div class="box form"><h1>Регистрация</h1><label>Ник (3–16 символов, латиница, цифры, _)</label><input id="rn" maxlength="16"><label>E-mail (нужен для восстановления пароля)</label><input id="re" type="email"><label>Пароль (от 6 символов)</label><input id="rp" type="password" autocomplete="new-password">${ts()}<p><button class="btn" id="rb">Создать аккаунт</button></p>${CFG.BACKEND?'':'<p class="mut">Демо: данные хранятся только в вашем браузере.</p>'}</div>`,
+forgot:()=>`<div class="box form"><h1>Восстановление пароля</h1><p class="mut">Введите e-mail аккаунта — мы отправим письмо со ссылкой для создания нового пароля.</p><label>E-mail</label><input id="fe" type="email">${ts()}<p><button class="btn" id="fgb">Отправить письмо</button></p><div id="fgm" class="mut"></div></div>`,
+reset:t=>`<div class="box form"><h1>Новый пароль</h1><label>Новый пароль (от 6 символов)</label><input id="np" type="password" autocomplete="new-password"><p><button class="btn" id="nb" data-t="${esc(t)}">Сохранить пароль</button></p></div>`};
+/* ===== Игры ===== */
+P.paid=()=>`<div class="box" style="text-align:center;padding:40px"><div style="font-size:56px">✅</div><h1>Спасибо за покупку!</h1><p class="mut">Если оплата прошла, привилегия будет выдана на ваш ник в течение минуты. Зайдите на сервер ${CFG.IP}.</p><a class="btn" href="#/shop">Вернуться в магазин</a></div>`;
+P.balance=()=>!me()?needLogin():`<h1>Пополнение баланса</h1><p class="mut">Баланс можно тратить на любые товары магазина. Зачисление происходит автоматически после оплаты.</p><div class="box form"><p>Ваш баланс: <b>${fmt(bal())}</b></p><label>Сумма пополнения, ₽</label><input id="ta" type="number" min="10" max="50000" value="300"><div class="tabs" style="margin:10px 0">${[100,300,500,1000,2000].map(v=>`<button data-q="${v}">${v} ₽</button>`).join('')}</div><p class="mut" id="tu"></p><p><button class="btn" id="tb">Пополнить</button></p>${CFG.BACKEND?'':'<p class="mut" style="font-size:12px">Демо: баланс пополняется без оплаты.</p>'}</div>`;
+function initBal(){const i=$('#ta');if(!i)return;const upd=()=>{const v=+i.value||0;$('#tu').textContent=v>0?'К оплате картой: '+Math.round(v*CUR.UAH[0])+' ₴ (LiqPay, курс сайта)':''};
+ i.oninput=upd;upd();document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{i.value=b.dataset.q;upd()});
+ $('#tb').onclick=async()=>{const v=Math.round(+i.value);if(!(v>=10&&v<=50000))return toast('Сумма от 10 до 50 000 ₽');
+  if(!CFG.BACKEND){setBal(bal()+v);toast('Демо: баланс пополнен без оплаты');route();return}
+  try{submitPay(await api('topup',{amount:v}))}catch(x){toast(x.message)}}}
+const RL={player:'Игрок',moderator:'Модератор',admin:'Администратор',main_admin:'Главный администратор',creator:'Создатель'},ST={pending:'Ожидает оплаты',paid:'Оплачен',delivered:'Выдан',failed:'Ошибка'};
+const roleOf=n=>CFG.BACKEND?L.get('role',''):(L.get('roles',{})[n]||(n==='Qizman'?'creator':n==='FOGR'?'main_admin':'player'));
+const isAdm=()=>!!me()&&['creator','main_admin'].includes(roleOf(me()));
+const SEED=[];
+const ord=()=>L.get('ord',SEED);
+const A={
+ async stats(){if(CFG.BACKEND)return api('admin_stats');const o=ord().filter(x=>['paid','delivered'].includes(x.status));return{users:users().length,orders:ord().length,revenue:o.reduce((a,x)=>a+x.amount,0),topics:topics().length,msgs:L.get('chat',[]).length}},
+ async orders(){return CFG.BACKEND?api('admin_orders'):ord()},
+ async setOrder(id,st){if(CFG.BACKEND)return api('admin_order_status',{id,status:st});L.set('ord',ord().map(x=>x.id==id?{...x,status:st}:x))},
+ async redeliver(id){if(CFG.BACKEND)return api('admin_redeliver',{id});toast('Демо: на сервере команда уйдёт через RCON')},
+ async prods(){return CFG.BACKEND?api('admin_products'):PR.map(p=>({id:p.id,name:p.n,price:p.p,active:!p.off}))},
+ async saveProd(id,price,active){if(!(price>0))throw new Error('Цена должна быть больше 0');if(CFG.BACKEND)await api('admin_product_save',{id,price,active});else{const o=L.get('pov',{});o[id]={price,off:!active};L.set('pov',o)}const p=PR.find(x=>x.id===id);p.p=price;p.off=!active},
+ async usersL(){return CFG.BACKEND?api('admin_users'):L.get('users',[]).map(u=>({nick:u.n,email:u.e,role:roleOf(u.n),balance:(L.get('balances',{})[u.n]||0)}))},
+ async setRole(nick,role){if(CFG.BACKEND)return api('admin_user_role',{nick,role});L.set('roles',{...L.get('roles',{}),[nick]:role})},
+ async delUser(nick){if(CFG.BACKEND)return api('admin_user_delete',{nick});L.set('users',L.get('users',[]).filter(u=>u.n!==nick))},
+ async addBal(nick,d){if(CFG.BACKEND)return api('admin_user_balance',{nick,delta:d});const b=L.get('balances',{});b[nick]=Math.max(0,(b[nick]||0)+d);L.set('balances',b)},
+ async promos(){return CFG.BACKEND?api('admin_promos'):Object.entries(L.get('promos',PROMO)).map(([code,percent])=>({code,percent}))},
+ async savePromo(code,percent){if(CFG.BACKEND)return api('admin_promo_save',{code,percent});L.set('promos',{...L.get('promos',PROMO),[code]:percent})},
+ async delPromo(code){if(CFG.BACKEND)return api('admin_promo_delete',{code});const o={...L.get('promos',PROMO)};delete o[code];L.set('promos',o)},
+ async topicsL(){return CFG.BACKEND?api('admin_topics'):topics().map((t,i)=>({id:i,title:t.t,nick:t.a}))},
+ async delTopic(id){if(CFG.BACKEND)return api('admin_topic_delete',{id});L.set('topics',topics().filter((_,i)=>i!=id))},
+ async chatL(){return CFG.BACKEND?api('admin_chat'):L.get('chat',[]).map((m,i)=>({id:i,msg:m.m,nick:m.a}))},
+ async delMsg(id){if(CFG.BACKEND)return api('admin_chat_delete',{id});L.set('chat',L.get('chat',[]).filter((_,i)=>i!=id))}};
+P.panel=()=>!isAdm()?`<div class="box">Доступ только для создателя и главного администратора.</div>${me()?'':needLogin()}`:`<h1>Админ-панель</h1>${CFG.BACKEND?'':'<p class="mut">Демо: данные хранятся в вашем браузере. На сервере доступ проверяется по роли в базе данных.</p>'}<div class="tabs" id="pt">${[['ov','Обзор'],['or','Заказы'],['pr','Товары'],['us','Пользователи'],['pm','Промокоды'],['md','Модерация']].map(([k,n])=>`<button data-t="${k}">${n}</button>`).join('')}</div><div id="pb"></div>`;
+async function initPanel(){const pb=$('#pb'),tabs=document.querySelectorAll('#pt button'),money=n=>Number(n).toLocaleString('ru-RU')+' ₽';
+ const sel=(o,v,at)=>`<select ${at} style="width:auto">${o.map(([k,n])=>`<option value="${k}" ${k===v?'selected':''}>${n}</option>`).join('')}</select>`;
+ const list=h=>`<div class="box" style="padding:0">${h||'<div class="row mut">Пока пусто.</div>'}</div>`;
+ async function show(t){tabs.forEach(b=>b.classList.toggle('on',b.dataset.t===t));pb.innerHTML='<p class="mut">Загрузка…</p>';
+  try{let h='';
+   if(t==='ov'){const s=await A.stats(),o=(await A.orders()).slice(0,5);h=`<div class="stats">${[['Пользователей',s.users],['Заказов',s.orders],['Выручка',money(s.revenue)],['Тем на форуме',s.topics],['Сообщений в чате',s.msgs]].map(([n,v])=>`<div class="box"><b>${v}</b><span class="mut">${n}</span></div>`).join('')}</div><h2>Последние заказы</h2>${list(o.map(x=>`<div class="row"><div class="t"><b>${esc(x.nick)} · ${esc(x.product)}</b><span class="mut">${esc(x.created)}</span></div><span class="tag">${ST[x.status]}</span><b>${money(x.amount)}</b></div>`).join(''))}`}
+   else if(t==='or'){const o=await A.orders();h=list(o.map(x=>`<div class="row"><div class="t"><b>#${x.id} ${esc(x.nick)} · ${esc(x.product)}</b><span class="mut">${esc(x.created)} · ${esc(x.method||'')}</span></div><b>${money(x.amount)}</b>${sel(Object.entries(ST),x.status,`data-a="so" data-id="${x.id}"`)}${x.status==='paid'?`<button class="btn g" data-a="rd" data-id="${x.id}">Выдать</button>`:''}</div>`).join(''))}
+   else if(t==='pr'){const p=await A.prods();h=list(p.map(x=>`<div class="row"><div class="t"><b>${esc(x.name)}</b></div><input data-f="price" type="number" min="1" value="${x.price}" style="width:110px"><label class="ck" style="margin:0"><input type="checkbox" data-f="act" ${+x.active?'checked':''}> в продаже</label><button class="btn" data-a="sp" data-id="${esc(x.id)}">Сохранить</button></div>`).join(''))+'<p class="mut">Цена в рублях. Команды выдачи редактируются в таблице products базы данных.</p>'}
+   else if(t==='us'){const u=await A.usersL();h=list(u.map(x=>`<div class="row"><div class="av">${esc(x.nick[0]).toUpperCase()}</div><div class="t"><b>${esc(x.nick)}</b><span class="mut">${esc(x.email||'')}</span></div><span class="tag">${money(x.balance||0)}</span><button class="btn g" data-a="bl" data-id="${esc(x.nick)}">±</button>${sel(Object.entries(RL),x.role,`data-a="sr" data-id="${esc(x.nick)}"`)}${x.nick!==me()?`<button class="btn g" data-a="du" data-id="${esc(x.nick)}">Удалить</button>`:''}</div>`).join(''))}
+   else if(t==='pm'){const p=await A.promos();h=`<div class="box" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><input id="pc" placeholder="КОД" style="max-width:200px"><input id="pp" type="number" min="1" max="90" placeholder="Скидка %" style="max-width:130px"><button class="btn" data-a="ap">Добавить</button></div>`+list(p.map(x=>`<div class="row"><div class="t"><b>${esc(x.code)}</b></div><span class="tag">−${x.percent}%</span><button class="btn g" data-a="dp" data-id="${esc(x.code)}">Удалить</button></div>`).join(''))}
+   else{const[tp,ch]=await Promise.all([A.topicsL(),A.chatL()]);h=`<h2>Темы форума</h2>`+list(tp.map(x=>`<div class="row"><div class="t"><b>${esc(x.title)}</b><span class="mut">${esc(x.nick)}</span></div><button class="btn g" data-a="dt" data-id="${x.id}">Удалить</button></div>`).join(''))+`<h2>Чат</h2>`+list(ch.map(x=>`<div class="row"><div class="t"><b>${esc(x.nick)}</b><span class="mut">${esc(x.msg)}</span></div><button class="btn g" data-a="dm" data-id="${x.id}">Удалить</button></div>`).join(''))}
+   pb.innerHTML=h}catch(e){pb.innerHTML='<div class="box">'+esc(e.message)+'</div>'}}
+ pb.onclick=async e=>{const b=e.target.closest('[data-a]');if(!b||b.tagName==='SELECT')return;const a=b.dataset.a,id=b.dataset.id;
+  try{if(a==='sp'){const r=b.closest('.row');await A.saveProd(id,+r.querySelector('[data-f=price]').value,r.querySelector('[data-f=act]').checked);toast('Сохранено')}
+   else if(a==='bl'){const v=parseInt(prompt('Изменить баланс на (₽, можно со знаком минус):','100'),10);if(!v)return;await A.addBal(id,v);show('us')}
+   else if(a==='du'){if(!confirm('Удалить пользователя '+id+'?'))return;await A.delUser(id);show('us')}
+   else if(a==='dp'){await A.delPromo(id);show('pm')}
+   else if(a==='ap'){const c=$('#pc').value.trim().toUpperCase(),p=+$('#pp').value;if(!/^[A-Z0-9]{3,20}$/.test(c)||!(p>=1&&p<=90))return toast('Код: 3–20 символов (A–Z, 0–9), скидка 1–90%');await A.savePromo(c,p);show('pm')}
+   else if(a==='dt'){await A.delTopic(id);show('md')}else if(a==='dm'){await A.delMsg(id);show('md')}
+   else if(a==='rd'){await A.redeliver(id);show('or')}}catch(x){toast(x.message)}};
+ pb.onchange=async e=>{const t=e.target;try{if(t.dataset.a==='so'){await A.setOrder(t.dataset.id,t.value);toast('Статус обновлён')}else if(t.dataset.a==='sr'){await A.setRole(t.dataset.id,t.value);toast('Роль обновлена')}}catch(x){toast(x.message)}};
+ tabs.forEach(b=>b.onclick=()=>show(b.dataset.t));show('ov')}
+function initGames(){const box=document.getElementById('gm'),tabs=document.getElementById('gt'),G={snake,memory,clicker};
+ function show(k){clearInterval(window.GI);window.onkeydown=null;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));G[k](box)}
+ tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>show(b.dataset.k));show('snake')}
+function snake(box){const N=15,S=20,D={U:[0,-1],D:[0,1],L:[-1,0],R:[1,0]},K={ArrowUp:'U',ArrowDown:'D',ArrowLeft:'L',ArrowRight:'R',w:'U',s:'D',a:'L',d:'R'};
+ box.innerHTML='<canvas id="cv" width="300" height="300" style="background:var(--card2);border-radius:10px;max-width:100%"></canvas><p id="sc" class="mut"></p><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn g" data-m="U">↑</button><button class="btn g" data-m="L">←</button><button class="btn g" data-m="D">↓</button><button class="btn g" data-m="R">→</button><button class="btn" id="rs">Заново</button></div>';
+ const c=document.getElementById('cv').getContext('2d');let s,d,nd,f,sc,dead;
+ const food=()=>{do{f=[Math.random()*N|0,Math.random()*N|0]}while(s.some(p=>p[0]===f[0]&&p[1]===f[1]))};
+ const info=()=>document.getElementById('sc').textContent='Счёт: '+sc+' · Рекорд: '+L.get('snakebest',0)+(dead?' · Игра окончена':'');
+ function reset(){s=[[7,7]];d=nd=D.R;sc=0;dead=false;food();info()}
+ function draw(){c.clearRect(0,0,300,300);c.fillStyle='#ff7a00';c.fillRect(f[0]*S+2,f[1]*S+2,S-4,S-4);c.fillStyle='#3ddc84';s.forEach(p=>c.fillRect(p[0]*S+1,p[1]*S+1,S-2,S-2))}
+ function step(){if(dead)return;d=nd;const h=[s[0][0]+d[0],s[0][1]+d[1]];
+  if(h[0]<0||h[1]<0||h[0]>=N||h[1]>=N||s.some(p=>p[0]===h[0]&&p[1]===h[1])){dead=true;if(sc>L.get('snakebest',0))L.set('snakebest',sc);info();return}
+  s.unshift(h);if(h[0]===f[0]&&h[1]===f[1]){sc++;food();info()}else s.pop();draw()}
+ const turn=k=>{const n=D[k];if(n[0]+d[0]||n[1]+d[1])nd=n};
+ window.onkeydown=e=>{const k=K[e.key];if(k){e.preventDefault();turn(k)}};
+ box.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>turn(b.dataset.m));
+ document.getElementById('rs').onclick=reset;reset();draw();window.GI=setInterval(step,120)}
+function memory(box){const E=['🦊','⛏️','💎','🗡️','🏹','🧱','🔥','🌲'],a=[...E,...E].sort(()=>Math.random()-.5);let open=[],lock=false,pairs=0,mv=0;
+ box.innerHTML='<p class="mut" id="mi">Ходов: 0</p><div style="display:grid;grid-template-columns:repeat(4,64px);gap:8px" id="mg"></div><p><button class="btn" id="mr">Заново</button></p>';
+ const g=document.getElementById('mg');a.forEach((e,i)=>{const b=document.createElement('button');b.className='btn g';b.style.cssText='height:64px;font-size:28px';b.textContent='?';
+  b.onclick=()=>{if(lock||b.dataset.o)return;b.textContent=e;b.dataset.o=1;open.push([b,e]);if(open.length<2)return;mv++;
+   document.getElementById('mi').textContent='Ходов: '+mv;const[[x,ex],[y,ey]]=open;open=[];
+   if(ex===ey){pairs++;if(pairs===8)document.getElementById('mi').textContent='Победа за '+mv+' ходов!'}
+   else{lock=true;setTimeout(()=>{x.textContent=y.textContent='?';delete x.dataset.o;delete y.dataset.o;lock=false},700)}};g.append(b)});
+ document.getElementById('mr').onclick=()=>memory(box)}
+function clicker(box){let st=L.get('clk',{n:0,l:1});const cost=()=>10*Math.pow(2,st.l-1);
+ box.innerHTML='<p style="font-size:28px;margin:0" id="cn"></p><button id="ck" style="font-size:72px;background:none;border:0;cursor:pointer" aria-label="Клик">🦊</button><p><button class="btn" id="up"></button> <button class="btn g" id="cr">Сбросить</button></p>';
+ const u=()=>{document.getElementById('cn').textContent=st.n+' очков';document.getElementById('up').textContent='Улучшить (+1 за клик) — '+cost();L.set('clk',st)};
+ document.getElementById('ck').onclick=()=>{st.n+=st.l;u()};
+ document.getElementById('up').onclick=()=>{if(st.n<cost())return toast('Замало очков');st.n-=cost();st.l++;u()};
+ document.getElementById('cr').onclick=()=>{st={n:0,l:1};u()};u()}
+
+let ARG='';
+function openProd(id){const p=PR.find(x=>x.id===id),d=$('#pd');
+ d.innerHTML=`<div class="pm"><div class="tx"><button class="btn g x" id="pcl" aria-label="Закрыть">✕</button><span class="tag">Обычные донаты</span><h1 style="margin-top:8px">${p.n}</h1><p><span class="pr" style="font-size:18px">${fmt(p.p)}</span></p><p><button class="btn" id="pad">${cart.includes(p.id)?'Уже в корзине':'Добавить в корзину'}</button></p><b>КОМАНДЫ:</b><ul class="l">${p.c.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><b>БОНУСЫ:</b><ul class="l">${p.b.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div><img src="${img(p.id)}" alt="${p.n}"></div>`;
+ d.showModal();$('#pcl').onclick=()=>d.close();$('#pad').onclick=()=>{const u=me();if(cart.includes(p.id))return toast('Уже в корзине');cart.push(p.id);saveCart();if(u)L.set('bought:'+u,1);toast(p.n+' добавлен в корзину');d.close()}}
+const PAY=[['balance','💰','Мгновенно','Оплата с баланса',1],['card','💳','Visa, Mastercard, Apple Pay, Google Pay','Оплата картой (₴, LiqPay)',1]];
+const bal=()=>CFG.BACKEND?L.get('bal',0):(L.get('balances',{})[me()]||0);
+const setBal=v=>{if(CFG.BACKEND)L.set('bal',v);else L.set('balances',{...L.get('balances',{}),[me()]:v})};
+function submitPay(j){const f=document.createElement('form');f.method='POST';f.action=j.action;f.acceptCharset='utf-8';[['data',j.data],['signature',j.signature]].forEach(([k,v])=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;f.append(i)});document.body.append(f);f.submit()}
+const PROMO={QIZMAN:10,ROKETGARI:5};let CO={nick:'',email:'',promo:'',pct:0,method:'card'};
+const total=()=>Math.round(cart.reduce((a,id)=>a+PR.find(p=>p.id===id).p,0)*(100-CO.pct)/100);
+const cartIt=()=>cart.map(id=>PR.find(p=>p.id===id));
+function openCart(){const d=$('#cd'),it=cartIt();
+ d.innerHTML=`<div style="padding:22px"><button class="btn g x" id="ccl" aria-label="Закрыть">✕</button><h1>Корзина</h1>${it.map(p=>`<div class="row"><img src="${img(p.id)}" alt="" style="width:48px;height:48px;border-radius:10px;object-fit:cover"><div class="t"><b>${p.n}</b><span class="mut">${fmt(p.p)}</span></div><button class="btn g" data-r="${p.id}">Убрать</button></div>`).join('')||'<p class="mut">Корзина пуста.</p>'}${it.length?`<h2>Итого: ${fmt(total())}</h2><p><button class="btn" id="co" style="width:100%">Оформить заказ</button></p>`:''}</div>`;
+ d.showModal();$('#ccl').onclick=()=>d.close();d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{cart=cart.filter(x=>x!==b.dataset.r);saveCart();openCart()});$('#co')&&($('#co').onclick=()=>checkout(1))}
+function checkout(step){const d=$('#cd'),it=cartIt(),sum=fmt(total()),uah=Math.round(total()*CUR.UAH[0]).toLocaleString('ru-RU')+' ₴';
+ const head=`<button class="btn g x" id="ccl" aria-label="Закрыть">✕</button>`;
+ const top=`<div class="row" style="border:0;padding:6px 0 14px"><img src="${img(it[0].id)}" alt="" style="width:56px;height:56px;border-radius:14px;object-fit:cover"><div class="t"><small class="mut">${it.length} шт.</small><b style="font-size:20px">${it.map(p=>p.n).join(', ')}</b></div><div style="text-align:right"><small class="mut">Итого к оплате</small><br><span class="pr">${sum}</span></div></div>`;
+ const err=t=>{const e=$('#cer');e&&(e.textContent=t)};
+ if(step===1){d.innerHTML=`<div style="padding:22px">${head}<h1>🛒 Покупка товара</h1><p class="mut">Информация о покупке услуг и данных о пользователе</p>${top}<label>Ник в игре</label><input id="cn" maxlength="16" value="${esc(CO.nick||me()||'')}" autocomplete="off"><label>E-mail (для чека и связи)</label><input id="ce" type="email" value="${esc(CO.email)}"><label>Промокод</label><div style="display:flex;gap:8px"><input id="cp" placeholder="QIZMAN (-10%) или ROKETGARI (-5%)" value="${esc(CO.promo)}"><button class="btn g" id="pa" type="button">Применить</button></div><div id="pm" class="mut" style="min-height:22px"></div><label class="ck"><input type="checkbox" id="k1"> Я принимаю условия&nbsp;<a href="#/offer" target="_blank" style="color:var(--a)">публичной оферты</a></label><label class="ck"><input type="checkbox" id="k2"> Я подтверждаю, что банковская карта принадлежит мне</label><div id="cer" style="color:#ff6b81;min-height:22px"></div><button class="btn" id="go" style="width:100%">Продолжить</button><p class="mut" style="font-size:12px">Храним и обрабатываем персональные данные в соответствии с политикой конфиденциальности.</p></div>`;
+  $('#ccl').onclick=()=>d.close();
+  $('#pa').onclick=async()=>{CO.nick=$('#cn').value.trim();CO.email=$('#ce').value.trim();const pc=$('#cp').value.trim().toUpperCase();let pct=0;
+   if(pc){try{pct=CFG.BACKEND?(await api('promo',{code:pc})).percent:(L.get('promos',PROMO)[pc]||0)}catch(x){pct=0}}
+   CO.promo=pct?pc:'';CO.pct=pct;checkout(1);$('#cp').value=pc;$('#pm').textContent=pct?`Скидка ${pct}% применена`:(pc?'Промокод не найден':'')};
+  $('#go').onclick=async()=>{const n=$('#cn').value.trim(),e=$('#ce').value.trim(),pc=$('#cp').value.trim().toUpperCase();
+   if(!/^[A-Za-z0-9_]{3,16}$/.test(n))return err('Ник: 3–16 символов, латиница, цифры, _');if(!/^\S+@\S+\.\S+$/.test(e))return err('Введите корректный e-mail');if(!$('#k1').checked||!$('#k2').checked)return err('Подтвердите оба пункта');
+   let pct=0;if(pc){try{pct=CFG.BACKEND?(await api('promo',{code:pc})).percent:(L.get('promos',PROMO)[pc]||0)}catch(x){pct=0}if(!pct)return err('Промокод не найден')}
+   CO={...CO,nick:n,email:e,promo:pc,pct};let seen=users().includes(n);if(CFG.BACKEND)try{seen=(await api('player',{nick:n})).seen}catch(x){seen=true}
+   checkout(seen?2:'warn')}}
+ else if(step==='warn'){d.innerHTML=`<div style="padding:34px 26px;text-align:center"><div style="font-size:64px">⚠️</div><h2 style="margin:10px 0">Игрок <b>${esc(CO.nick)}</b> никогда не заходил на сервер «${CFG.SERVER}»</h2><p class="mut">Услуга может быть не предоставлена!</p><p><button class="btn" id="chg" style="width:100%">Изменить никнейм</button></p><p><button class="btn g" id="cont" style="width:100%">Всё равно продолжить</button></p></div>`;
+  $('#chg').onclick=()=>checkout(1);$('#cont').onclick=()=>checkout(2)}
+ else{d.innerHTML=`<div style="padding:22px">${head}<h1>💳 Выберите метод оплаты</h1><p class="mut">Выберите удобный для вас способ оплаты</p>${top}<div class="pay">${PAY.map(([k,i,s,n,a])=>`<button data-m="${k}" ${a?'':'disabled style="opacity:.45;cursor:not-allowed"'} class="${CO.method===k?'on':''}"><span style="font-size:26px">${i}</span><span><small>${k==='balance'?'Баланс: '+fmt(bal()):a?s:'Скоро'}</small><b>${n}</b></span></button>`).join('')}</div><p class="mut" style="font-size:13px">Картой списание идёт в гривнах через LiqPay (ПриватБанк). Товар выдаётся автоматически после оплаты.</p><div id="cer" style="color:#ff6b81;min-height:22px"></div><button class="btn" id="pay" style="width:100%">Оплатить ${CO.method==='balance'?sum:uah}</button><p class="mut" style="font-size:12px">Нажимая «Оплатить», вы принимаете условия <a href="#/offer" target="_blank" style="color:var(--a)">публичной оферты</a>.</p></div>`;
+  $('#ccl').onclick=()=>d.close();d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{CO.method=b.dataset.m;checkout(2)});
+  $('#pay').onclick=async()=>{const done=()=>{cart=[];saveCart();d.close();toast('Покупка оформлена! Товар будет выдан на сервере.');route()};
+   const body={nick:CO.nick,email:CO.email,promo:CO.promo,method:CO.method,items:cart};
+   if(CO.method==='balance'){if(!me())return err('Войдите в аккаунт, чтобы платить с баланса');if(bal()<total())return err('Недостаточно средств. Пополните баланс.');
+    if(CFG.BACKEND){try{const j=await api('order',body);L.set('bal',j.balance);done()}catch(x){err(x.message)}return}
+    setBal(bal()-total());const o=ord();cart.slice().reverse().forEach((id,i)=>{const p=PR.find(x=>x.id===id);o.unshift({id:Date.now()+i,nick:CO.nick,product:p.n,amount:Math.round(p.p*(100-CO.pct)/100),status:'delivered',method:'balance',created:new Date().toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})})});L.set('ord',o);done();return}
+   if(!CFG.BACKEND)return err('Демо: оплата картой заработает после подключения сервера и LiqPay. Для проверки пополните баланс и платите с него.');
+   try{submitPay(await api('order',body))}catch(x){err(x.message)}}}}
+$('#fab').onclick=openCart;
+function authBar(){const u=me();$('#auth').innerHTML=u?`<a class="btn g" href="#/balance" title="Пополнить баланс">💰 ${fmt(bal())} <b>＋</b></a> <span class="mut">${esc(u)}</span> <button class="btn g" id="lo">Выйти</button>`:`<a class="btn g" href="#/login">Войти</a> <a class="btn" href="#/reg">Регистрация</a>`;if(u)$('#lo').onclick=async()=>{try{CFG.BACKEND&&await api('logout',{})}catch(e){}L.set('me',null);L.set('role','');L.set('bal',0);location.hash='#/';route()}}
+
+const MAIN=[["","Главная"],["shop","Магазин"],["rules","Правила"],["forum","Форум"]],MORE=[["balance","Баланс"],["users","Пользователи"],["admin","Команда"],["games","Игры"],["friends","Друзья"],["ach","Достижения"],["chat","Чат"],["search","Поиск"],["offer","Оферта"],["panel","Админ-панель"]];
+
+function bind(r){const g=id=>document.getElementById(id);
+ if(r===''||r==='shop'){const bp=()=>document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>openProd(b.dataset.p));bp();
+  const tab=(id,set)=>g(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{set(b.dataset.k);g(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));g('sg').innerHTML=shopGrid();bp()});
+  tab('sv',v=>SV=v);tab('ct',v=>CT=v);g('cur')&&(g('cur').onchange=e=>{L.set('cur',e.target.value);route()});
+  g('ip')&&(g('ip').onclick=()=>{navigator.clipboard?.writeText(CFG.IP);toast('IP скопирован')});loadRec()}
+ if(r==='sec')g('mk')&&(g('mk').onclick=()=>{const t=g('tt').value.trim(),b=g('tb').value.trim();if(!t)return toast('Введите название темы');const l=topics();l.push({s:ARG,t,b,a:me()});L.set('topics',l);route()});
+ if(r==='games')initGames();if(r==='balance'&&me())initBal();if(r==='panel'&&isAdm())initPanel();
+ if(r==='friends'){g('fb')&&(g('fb').onclick=()=>{const q=g('fq').value.trim(),u=me(),f=L.get('fr:'+u,[]);if(q.length<2)return toast('Минимум 2 символа');if(!users().includes(q)||q===u)return toast('Игрок не найден');if(f.includes(q))return toast('Уже в списке');f.push(q);L.set('fr:'+u,f);route()});document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{L.set('fr:'+me(),L.get('fr:'+me(),[]).filter(x=>x!==b.dataset.d));route()})}
+ if(r==='chat'){const c=g('cl');c&&(c.scrollTop=c.scrollHeight);g('cs')&&(g('cs').onclick=()=>{const m=g('cm').value.trim();if(!m)return;const l=L.get('chat',[]);l.push({a:me(),m});L.set('chat',l.slice(-100));route()})}
+ if(r==='search')g('sb').onclick=()=>{const q=g('sq').value.trim().toLowerCase();const res=topics().filter(t=>(t.t+t.b+t.a).toLowerCase().includes(q));g('sr').innerHTML=q?`<div class="box" style="padding:0">${res.map(t=>`<div class="row"><div class="t"><b>${esc(t.t)}</b><span class="mut">${esc(t.b)}</span></div><span class="tag">${esc(t.a)}</span></div>`).join('')||'<div class="row mut">Ничего не найдено. Попробуйте другое слово.</div>'}</div>`:''};
+ if(r==='reg')g('rb').onclick=async()=>{const n=g('rn').value.trim(),e=g('re').value.trim(),p=g('rp').value;if(!/^[A-Za-z0-9_]{3,16}$/.test(n))return toast('Ник: 3–16 символов, латиница, цифры, _');if(!/^\S+@\S+\.\S+$/.test(e))return toast('Введите корректный e-mail');if(p.length<6)return toast('Пароль слишком короткий');
+  try{if(CFG.BACKEND)await api('register',{nick:n,email:e,pass:p});else{const l=users();const a=L.get('users',[]);if(a.some(u=>u.n.toLowerCase()===n.toLowerCase()||u.e===e))return toast('Ник или e-mail уже заняты');a.push({n,e,p:b64(p)});L.set('users',a)}L.set('me',n);location.hash='#/';route()}catch(x){toast(x.message)}};
+ if(r==='login')g('lb').onclick=async()=>{const n=g('ln').value.trim(),p=g('lp').value;try{let nick=n;if(CFG.BACKEND){const j=await api('login',{login:n,pass:p});nick=j.nick;L.set('role',j.role);L.set('bal',j.balance||0)}else{const u=L.get('users',[]).find(x=>(x.n===n||x.e===n)&&x.p===b64(p));if(!u)return toast('Неверный ник или пароль');nick=u.n}L.set('me',nick);location.hash='#/';route()}catch(x){toast(x.message)}};
+ if(r==='forgot')g('fgb').onclick=async()=>{const e=g('fe').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return toast('Введите корректный e-mail');
+  try{if(CFG.BACKEND){await api('forgot',{email:e});g('fgm').textContent='Если такой e-mail зарегистрирован, письмо со ссылкой уже отправлено. Проверьте также папку «Спам».'}
+   else{const u=L.get('users',[]).find(x=>x.e===e);g('fgm').innerHTML='Если такой e-mail зарегистрирован, письмо отправлено.';if(u){const t=Math.random().toString(36).slice(2)+Date.now().toString(36),rs=L.get('resets',{});rs[t]={n:u.n,x:Date.now()+36e5};L.set('resets',rs);g('fgm').innerHTML+=`<br><br><b>Демо-режим:</b> письма не отправляются. Ссылка из письма: <a href="#/reset/${t}" style="color:var(--a)">открыть</a>`}}}catch(x){toast(x.message)}};
+ if(r==='reset')g('nb').onclick=async()=>{const t=g('nb').dataset.t,p=g('np').value;if(p.length<6)return toast('Пароль слишком короткий');
+  try{if(CFG.BACKEND)await api('reset',{token:t,pass:p});else{const rs=L.get('resets',{}),x=rs[t];if(!x||x.x<Date.now())return toast('Ссылка недействительна или устарела');const a=L.get('users',[]);a.find(u=>u.n===x.n).p=b64(p);L.set('users',a);delete rs[t];L.set('resets',rs)}toast('Пароль изменён. Войдите с новым паролем.');location.hash='#/login'}catch(x){toast(x.message)}}}
+function route(){clearInterval(window.GI);window.onkeydown=null;const h=(location.hash||'#/').slice(2).split('/');let r=h[0];ARG=h[1]||'';if(!(r in P))r='';if(r==='paid'){cart=[];saveCart()}
+ const lk=([k,n])=>`<a href="#/${k}" class="${(r===k||(r==='sec'&&k==='forum'))?'on':''}">${n}</a>`;
+ $('#nav').innerHTML=MAIN.map(lk).join('')+`<details class="more"><summary>Ещё ▾</summary><div class="dd">${MORE.filter(x=>x[0]!=='panel'||isAdm()).map(lk).join('')}</div></details>`;
+ authBar();$('#fn').textContent=cart.length;$('#app').innerHTML=P[r](ARG);bind(r);window.scrollTo(0,0);loadSrv()}
+addEventListener('hashchange',route);
+if(!CFG.BACKEND){const ov=L.get('pov',{});PR.forEach(p=>{if(ov[p.id]){p.p=ov[p.id].price;p.off=ov[p.id].off}})}
+if(CFG.BACKEND&&me())api('me').then(j=>{L.set('bal',j.balance);L.set('role',j.role);authBar()}).catch(()=>{});
+route();if(CFG.BACKEND)api('products').then(l=>{PR.forEach(p=>{const x=l.find(q=>q.id===p.id);p.off=!x;if(x)p.p=+x.price});route()}).catch(()=>{});
+</script></body></html>

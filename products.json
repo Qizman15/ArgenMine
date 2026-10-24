@@ -1,0 +1,235 @@
+[
+ {
+  "id": "griefer",
+  "name": "griefer",
+  "price": 19,
+  "cat": "Обычные донаты",
+  "img": "img/griefer.jpg",
+  "cmds": [
+   "Посмотреть текущее время - /time",
+   "Открыть ручной верстак - /workbench",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Ваш префикс - %player_name%",
+   "Вам доступно 2 точки дома",
+   "Вы можете заприватить 2 региона",
+   "Вы можете выставить на рынок 2 предмета"
+  ],
+  "give": "lp user %username% parent add griefer",
+  "take": "lp user %username% parent remove griefer"
+ },
+ {
+  "id": "ghast",
+  "name": "GHAST",
+  "price": 698,
+  "cat": "Обычные донаты",
+  "img": "img/ghast.jpg",
+  "cmds": [
+   "Покушать - /feed",
+   "Получить голову игрока - /skull ник",
+   "Игнорировать игрока - /ignore ник",
+   "Открыть ручной эндер-сундук - /ec",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вам доступно 3 точки дома",
+   "Вы можете заприватить 3 региона",
+   "Вы можете выставить на рынок 5 предметов"
+  ],
+  "give": "lp user %username% parent add ghast",
+  "take": "lp user %username% parent remove ghast"
+ },
+ {
+  "id": "kraken",
+  "name": "KRAKEN",
+  "price": 658,
+  "cat": "Обычные донаты",
+  "img": "img/kraken.jpg",
+  "cmds": [
+   "Установить личное время - /ptime",
+   "Надеть предмет на голову - /hat",
+   "Посмотреть баланс другого игрока - /balance ник",
+   "Узнать информацию о предмете - /itemdb",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс KRAKEN %player_name%",
+   "Вам доступно 5 точек дома",
+   "Вы можете заприватить 5 регионов",
+   "Вы можете выставить на рынок 8 предметов"
+  ],
+  "give": "lp user %username% parent add kraken",
+  "take": "lp user %username% parent remove kraken"
+ },
+ {
+  "id": "wither",
+  "name": "WITHER",
+  "price": 699,
+  "cat": "Обычные донаты",
+  "img": "img/wither.jpg",
+  "cmds": [
+   "Посмотреть чужой инвентарь - /invsee ник",
+   "Посмотреть игроков поблизости - /near",
+   "Включить режим шпиона - /socialspy",
+   "Запустить фейерверк - /firework",
+   "Установить ясно - /sun",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вам доступно 7 точек дома",
+   "Вы можете заприватить 7 регионов",
+   "Вы можете выставить на рынок 10 предметов"
+  ],
+  "give": "lp user %username% parent add wither",
+  "take": "lp user %username% parent remove wither"
+ },
+ {
+  "id": "dragon",
+  "name": "DRAGON",
+  "price": 779,
+  "cat": "Обычные донаты",
+  "img": "img/dragon.jpg",
+  "cmds": [
+   "Посмотреть чужой инвентарь с броней - /invsee ник armour",
+   "Узнать реальный ник - /realname ник",
+   "Установить день - /day",
+   "Установить ночь - /night",
+   "Установить ясно - /sun",
+   "Писать объявления - /bc текст",
+   "Установить варп - /setwarp",
+   "Удалить свой варп - /delwarp",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вы можете создать 5 варпов",
+   "Вам доступно 10 точек дома",
+   "Вы можете заприватить 10 регионов",
+   "Вы можете выставить на рынок 15 предметов"
+  ],
+  "give": "lp user %username% parent add dragon",
+  "take": "lp user %username% parent remove dragon"
+ },
+ {
+  "id": "stinger",
+  "name": "STINGER",
+  "price": 1024,
+  "cat": "Обычные донаты",
+  "img": "img/stinger.jpg",
+  "cmds": [
+   "Выдать донат другому игроку - /grand give ник донат",
+   "GRIEFER (2ШТ.), GHAST (1ШТ.), KRAKEN (1ШТ.)",
+   "Телепортироваться около игроков - /rtp near",
+   "Установить фейковый ник - /nick ник",
+   "Починить вещь - /repair",
+   "Запретить телепортацию к себе - /tptoggle",
+   "Накормить игрока - /feed ник",
+   "Установить варп - /setwarp",
+   "Удалить свой варп - /delwarp",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вы можете создать 3 варпа",
+   "Вам доступно 15 точек дома",
+   "Вы можете заприватить 15 регионов",
+   "Вы можете выставить на рынок 25 предметов"
+  ],
+  "give": "lp user %username% parent add stinger",
+  "take": "lp user %username% parent remove stinger"
+ },
+ {
+  "id": "eternity",
+  "name": "ETERNITY",
+  "price": 1788,
+  "cat": "Обычные донаты",
+  "img": "img/eternity.jpg",
+  "cmds": [
+   "Выдать донат другому игроку - /grand give ник донат",
+   "KRAKEN (2ШТ.), WITHER (1ШТ.), DRAGON (1ШТ.)",
+   "Починить вещь (с зачарованием) - /repair",
+   "Починить все вещи в инвентаре - /repair all",
+   "Отключить входящие сообщения - /msgtoggle",
+   "Исцелиться - /heal",
+   "Поджечь игрока - /burn ник",
+   "Установить варп - /setwarp",
+   "Удалить свой варп - /delwarp",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вы можете создать 5 варпов",
+   "Вам доступно 20 точек дома",
+   "Вы можете заприватить 20 регионов",
+   "Вы можете выставить на рынок 25 предметов"
+  ],
+  "give": "lp user %username% parent add eternity",
+  "take": "lp user %username% parent remove eternity"
+ },
+ {
+  "id": "demon",
+  "name": "DEMON",
+  "price": 2430,
+  "cat": "Обычные донаты",
+  "img": "img/demon.jpg",
+  "cmds": [
+   "Выдать донат другому игроку - /grand give ник донат",
+   "WITHER (2ШТ.), DRAGON (1ШТ.), STINGER (1ШТ.)",
+   "Режим полёта - /fly",
+   "Режим бога - /god",
+   "Починить все вещи в инвентаре - /repair all (с зачарованиями)",
+   "Исцелить игрока - /heal ник",
+   "Кикнуть игрока - /kick ник",
+   "Установить варп - /setwarp",
+   "Удалить свой варп - /delwarp",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вы можете создать 10 варпов",
+   "Вам доступно 50 точек дома",
+   "Вы можете заприватить 50 регионов",
+   "Вы можете выставить на рынок 40 предметов"
+  ],
+  "give": "lp user %username% parent add demon",
+  "take": "lp user %username% parent remove demon"
+ },
+ {
+  "id": "dadmin",
+  "name": "D. ADMIN",
+  "price": 5349,
+  "cat": "Обычные донаты",
+  "img": "img/dadmin.jpg",
+  "cmds": [
+   "Выдать донат другому игроку - /grand give ник донат",
+   "WITHER (3ШТ.), DRAGON (2ШТ.), STINGER (1ШТ.), ETERNITY (1ШТ.)",
+   "Режим невидимки в любом мире - /vanish",
+   "Телепортировать игрока на спавн - /spawn ник",
+   "Кикнуть игрока - /kick ник",
+   "Установить варп - /setwarp",
+   "Удалить свой варп - /delwarp",
+   "Ежедневный бонус - /salary",
+   "Личный набор - /kits"
+  ],
+  "bonus": [
+   "Уникальный префикс %player_name%",
+   "Вы можете создать 215 варпов",
+   "Вам доступно 250 точек дома",
+   "Вы можете заприватить 260 регионов",
+   "Вы можете выставить на рынок 250 предметов"
+  ],
+  "give": "lp user %username% parent add dadmin",
+  "take": "lp user %username% parent remove dadmin"
+ }
+]
